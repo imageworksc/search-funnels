@@ -14,7 +14,7 @@
   /* 1. Scroll reveal
      ------------------------------------------------------------------------ */
   function initReveal() {
-    var items = document.querySelectorAll('.reveal');
+    var items = document.querySelectorAll('.sf-reveal');
 
     if (!('IntersectionObserver' in window)) {
       items.forEach(function (el) { el.classList.add('is-in'); });
@@ -36,11 +36,11 @@
   /* 2. Navigation
      ------------------------------------------------------------------------ */
   function initNav() {
-    var nav = document.getElementById('nav');
+    var nav = document.getElementById('sf-nav');
     if (!nav) return;
 
-    var burger = nav.querySelector('.burger');
-    var scrim = document.querySelector('.scrim');
+    var burger = nav.querySelector('.sf-burger');
+    var scrim = document.querySelector('.sf-scrim');
     var mobile = window.matchMedia('(max-width: 1080px)');
 
     function setOpen(open) {
@@ -66,7 +66,7 @@
     });
 
     // Submenus expand on tap inside the drawer
-    nav.querySelectorAll('button.menu__link').forEach(function (button) {
+    nav.querySelectorAll('button.sf-menu__link').forEach(function (button) {
       button.addEventListener('click', function () {
         var item = button.parentElement;
         var expanded = !item.classList.contains('is-expanded');
@@ -86,7 +86,7 @@
   /* 3. Steps accordion
      ------------------------------------------------------------------------ */
   function initSteps() {
-    var steps = document.querySelectorAll('.step');
+    var steps = document.querySelectorAll('.sf-step');
 
     steps.forEach(function (step) {
       step.addEventListener('toggle', function () {
