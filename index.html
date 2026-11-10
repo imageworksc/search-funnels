@@ -170,7 +170,7 @@
   /* ---------- Steps ---------- */
   section.band { padding: clamp(64px, 8vw, 104px) 0; }
   .steps-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.4fr); gap: 64px; align-items: start; }
-  .steps-intro { position: sticky; top: 32px; }
+  .steps-intro { position: sticky; top: 112px; }
   .steps-intro p.lead { color: var(--muted); }
   .steps { display: flex; flex-direction: column; gap: 14px; counter-reset: step; }
   .step { position: relative; overflow: hidden; background: var(--white); border: 1px solid var(--border); border-radius: var(--r); transition: transform .35s var(--ease), border-color .25s var(--ease), box-shadow .35s var(--ease); }
@@ -195,9 +195,9 @@
   .step-body p { font-size: 16px; line-height: 1.75; max-width: 64ch; margin-bottom: 12px; }
   .step-body p:last-child { margin-bottom: 0; }
   .step-body strong { color: var(--navy); }
-  .total { display: flex; align-items: center; gap: 20px; margin-top: 28px; padding: 22px 24px; background: var(--navy); color: var(--white); border-radius: var(--r); border-left: 4px solid var(--green); }
-  .total b { font-size: 40px; font-weight: 800; letter-spacing: -1px; line-height: 1; color: var(--green); flex-shrink: 0; }
-  .total p { font-size: 16.5px; font-weight: 700; line-height: 1.45; }
+  .total { margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--border); }
+  .total b { display: block; font-size: clamp(44px, 4.6vw, 60px); font-weight: 800; letter-spacing: -2px; line-height: 1; color: var(--green-ink); margin-bottom: 12px; }
+  .total p { font-size: 17px; font-weight: 700; line-height: 1.5; color: var(--navy); max-width: 34ch; }
 
   /* ---------- Example ---------- */
   .example { background: var(--tint); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -312,7 +312,6 @@
     .step summary { grid-template-columns: 28px minmax(0, 1fr) 28px; gap: 14px; padding: 18px 16px; }
     .step .ico { width: 28px; height: 28px; }
     .step-body { padding: 0 16px 20px 16px; }
-    .total { flex-direction: column; align-items: flex-start; gap: 10px; }
     .branches { margin-left: 12px; padding-left: 20px; }
     .branches > li::before { left: -20px; width: 14px; }
     .loc { grid-template-columns: 1fr; }
@@ -448,6 +447,10 @@
         <div class="steps-intro reveal">
           <h2 class="sec">Here’s how we do it</h2>
           <p class="lead">Five steps, from research to a full year of growth, all built around the one page you most want Google and AI to recommend.</p>
+          <div class="total">
+            <b>≈16</b>
+            <p>Approximately 16 connected pages working together around one core service or product.</p>
+          </div>
         </div>
 
         <div class="reveal">
@@ -495,10 +498,6 @@
             </details>
           </div>
 
-          <div class="total">
-            <b>≈16</b>
-            <p>Approximately 16 connected pages working together around one core service or product.</p>
-          </div>
         </div>
       </div>
     </div>
