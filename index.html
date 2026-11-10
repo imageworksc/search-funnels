@@ -31,11 +31,6 @@
   .wrap { max-width: 1180px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); }
   .narrow { max-width: 880px; }
 
-  /* Eyebrow: uppercase green label with a dot */
-  .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--green-ink); font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 16px; }
-  .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
-  .on-dark .eyebrow { color: var(--green); }
-
   h2.sec { font-size: clamp(28px, 3.4vw, 42px); font-weight: 800; color: var(--navy); line-height: 1.15; letter-spacing: -1px; margin-bottom: 20px; text-wrap: balance; }
   .on-dark h2.sec { color: var(--white); }
   p.lead { font-size: clamp(16px, 1.2vw, 18px); line-height: 1.75; max-width: 68ch; margin-bottom: 16px; }
@@ -52,16 +47,44 @@
   .btn--outline { background: rgba(128,195,74,.10); color: var(--white); border-color: var(--green); }
   .btn--outline:hover { background: var(--green); }
 
-  /* ---------- Top bar ---------- */
-  .topbar { position: absolute; top: 0; left: 0; right: 0; z-index: 3; }
-  .topbar .wrap { display: flex; align-items: center; justify-content: space-between; height: 84px; }
-  .topbar img { height: 38px; width: auto; }
-  .topbar a.tel { color: rgba(226,238,252,.82); font-size: 14.5px; font-weight: 600; text-decoration: none; }
-  .topbar a.tel b { color: var(--white); font-weight: 700; }
-  .topbar a.tel:hover b { color: var(--green); }
+  /* ---------- Navbar ---------- */
+  .util { background: var(--tint); border-bottom: 1px solid var(--border); font-size: 13px; color: var(--muted); }
+  .util .wrap { display: flex; justify-content: flex-end; align-items: center; gap: 12px; height: 36px; }
+  .util a { text-decoration: none; font-weight: 600; color: var(--muted); }
+  .util a:hover { color: var(--navy); }
+  .util a b { color: var(--navy); font-weight: 700; }
+  .util .sep { color: #c2ccdb; }
+  .nav { position: sticky; top: 0; z-index: 50; background: var(--white); box-shadow: 0 1px 0 var(--border); transition: box-shadow .2s var(--ease); }
+  .nav.stuck { box-shadow: 0 1px 0 var(--border), 0 10px 28px -14px rgba(20,40,80,.28); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 80px; gap: 24px; }
+  .nav .logo img { height: 40px; width: auto; }
+  .menu { display: flex; align-items: center; gap: 4px; list-style: none; }
+  .menu > li { position: relative; }
+  .menu > li > a, .menu > li > button { display: inline-flex; align-items: center; gap: 6px; height: 44px; padding: 0 14px; border: 0; background: none; font: inherit; font-size: 15px; font-weight: 600; color: #3d464d; text-decoration: none; cursor: pointer; border-radius: var(--r); }
+  .menu > li > a:hover, .menu > li > button:hover, .menu > li:focus-within > button { color: var(--navy); }
+  .menu > li > button::after { content: ""; width: 7px; height: 7px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translateY(-3px); opacity: .6; }
+  .dd { position: absolute; top: 100%; left: 0; min-width: 300px; background: var(--white); border: 1px solid var(--border); border-radius: var(--r); box-shadow: var(--shadow-card); padding: 10px; list-style: none; opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .18s var(--ease), transform .18s var(--ease), visibility .18s; }
+  .menu > li:hover > .dd, .menu > li:focus-within > .dd { opacity: 1; visibility: visible; transform: none; }
+  .dd .grp { margin: 10px 14px 4px; color: var(--green-ink); font-size: 11.5px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+  .dd .grp:first-child { margin-top: 4px; }
+  .dd a { display: block; padding: 9px 14px; border-radius: var(--r); color: #3d464d; font-size: 14.5px; font-weight: 600; line-height: 1.35; text-decoration: none; }
+  .dd a small { display: block; margin-top: 2px; color: var(--faint); font-size: 11.5px; font-weight: 500; }
+  .dd a:hover { background: var(--tint); color: var(--navy); }
+  .dd a:hover small { color: var(--blue); }
+  .dd a[aria-current] { background: var(--chip-green); color: var(--navy); }
+  .menu > li > a.btn--nav { background: var(--green); color: var(--white); font-weight: 700; justify-content: center; }
+  .menu > li > a.btn--nav:hover { background: var(--green-ink); color: var(--white); }
+  .nav .btn--nav { min-height: 44px; padding: 0 22px; font-size: 15px; margin-left: 10px; }
+  .burger { display: none; width: 44px; height: 44px; border: 1px solid var(--border); background: var(--white); border-radius: var(--r); cursor: pointer; place-items: center; }
+  .burger span, .burger span::before, .burger span::after { display: block; width: 20px; height: 2px; background: var(--navy); position: relative; transition: transform .2s var(--ease), background .2s; }
+  .burger span::before, .burger span::after { content: ""; position: absolute; left: 0; }
+  .burger span::before { top: -6px; } .burger span::after { top: 6px; }
+  .nav.open .burger span { background: transparent; }
+  .nav.open .burger span::before { transform: translateY(6px) rotate(45deg); }
+  .nav.open .burger span::after { transform: translateY(-6px) rotate(-45deg); }
 
   /* ---------- Hero ---------- */
-  .hero { position: relative; color: rgba(226,238,252,.86); background: linear-gradient(180deg, #0a1c38 0%, #0d2748 40%, #113659 75%, #164784 100%); padding: 160px 0 96px; overflow: hidden; isolation: isolate; }
+  .hero { position: relative; color: rgba(226,238,252,.86); background: linear-gradient(180deg, #0a1c38 0%, #0d2748 40%, #113659 75%, #164784 100%); padding: 88px 0 96px; overflow: hidden; isolation: isolate; }
   .hero::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px); background-size: 26px 26px; z-index: -1; }
   .hero::after { content: ""; position: absolute; width: 900px; height: 900px; right: -260px; top: -200px; background: radial-gradient(closest-side, rgba(32,95,166,.55), transparent 70%); z-index: -1; }
   .hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 64px; align-items: center; }
@@ -146,24 +169,62 @@
   /* ---------- CTA band ---------- */
   .cta { position: relative; background: linear-gradient(180deg, #205fa6 0%, #1d569a 28%, #164784 47%, #113659 65%, #0d2748 83%, #0a1c38 100%); color: rgba(226,238,252,.82); overflow: hidden; isolation: isolate; text-align: center; }
   .cta::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px); background-size: 26px 26px; z-index: -1; }
-  .cta .wrap { max-width: 820px; }
-  .cta .eyebrow { justify-content: center; }
-  .cta p.lead { margin-left: auto; margin-right: auto; color: rgba(226,238,252,.82); }
-  .cta p.lead.em { color: var(--white); font-weight: 700; }
+  .cta .wrap { max-width: 1080px; }
+  .cta h2.sec { max-width: 760px; margin-left: auto; margin-right: auto; }
+  .cta p.lead { max-width: none; margin-left: auto; margin-right: auto; color: rgba(226,238,252,.82); }
+  .cta p.lead.em { color: var(--white); font-weight: 700; white-space: nowrap; }
   .cta .btn { margin-top: 28px; min-height: 58px; padding: 0 36px; font-size: 17px; }
 
   /* ---------- Footer ---------- */
-  footer { background: #071a38; color: rgba(226,238,252,.6); font-size: 14px; padding: 32px 0; }
-  footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
-  footer img { height: 30px; width: auto; }
-  footer a { color: rgba(226,238,252,.82); text-decoration: none; font-weight: 600; }
-  footer a:hover { color: var(--green); }
+  .footer { background: #071a38; color: rgba(226,238,252,.7); font-size: 14.5px; padding: 72px 0 0; position: relative; isolation: isolate; }
+  .footer::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px); background-size: 26px 26px; z-index: -1; }
+  .footer a { color: rgba(226,238,252,.82); text-decoration: none; }
+  .footer a:hover { color: var(--green); }
+  .f-grid { display: grid; grid-template-columns: 1.3fr 1fr .8fr .9fr 1.3fr; gap: 40px; }
+  .f-brand img { height: 40px; width: auto; margin-bottom: 20px; }
+  .f-brand p { max-width: 30ch; line-height: 1.6; margin-bottom: 20px; }
+  .social { display: flex; gap: 10px; }
+  .social a { width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.16); border-radius: var(--r); transition: border-color .18s, background .18s; }
+  .social a:hover { border-color: var(--green); background: rgba(128,195,74,.12); }
+  .social svg { width: 17px; height: 17px; fill: currentColor; }
+  .f-col h4 { display: flex; align-items: center; gap: 10px; color: var(--green); font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 16px; }
+  .f-col ul { list-style: none; display: grid; gap: 10px; }
+  .f-col + .f-col h4.sub-h { margin-top: 0; }
+  .f-col h4.mt { margin-top: 28px; }
+  .f-contact .tel { display: block; font-size: 22px; font-weight: 800; color: var(--white); letter-spacing: -.3px; margin: 2px 0 20px; }
+  .f-contact address { font-style: normal; line-height: 1.55; margin-bottom: 16px; }
+  .f-contact address a { font-weight: 700; color: var(--white); display: inline-block; margin-bottom: 2px; }
+  .f-bottom { margin-top: 56px; border-top: 1px solid rgba(255,255,255,.12); padding: 22px 0 28px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px; font-size: 13px; color: rgba(226,238,252,.55); }
+  .f-bottom nav { display: flex; gap: 10px; }
 
   /* Reveal on scroll */
   .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
   .reveal.in { opacity: 1; transform: none; }
 
   /* ---------- Responsive ---------- */
+  @media (max-width: 1100px) {
+    .f-grid { grid-template-columns: 1fr 1fr 1fr; }
+    .f-brand, .f-contact { grid-column: span 3; }
+    .f-contact { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 32px; }
+    .f-contact h4 { grid-column: 1 / -1; }
+    .cta p.lead.em { white-space: normal; }
+    .cta p.lead br { display: none; }
+  }
+  @media (max-width: 1080px) {
+    .burger { display: grid; }
+    .menu { position: fixed; top: 0; right: 0; bottom: 0; width: min(380px, 88vw); flex-direction: column; align-items: stretch; gap: 0; padding: 88px 16px 24px; background: var(--white); box-shadow: -12px 0 40px -12px rgba(20,60,102,.28); overflow-y: auto; transform: translateX(105%); transition: transform .28s var(--ease); z-index: -1; }
+    .nav.open .menu { transform: none; }
+    .menu > li { border-bottom: 1px solid var(--border-soft, #eef2f7); }
+    .menu > li > a, .menu > li > button { width: 100%; justify-content: space-between; height: 52px; font-size: 16px; }
+    .dd { position: static; min-width: 0; border: 0; box-shadow: none; padding: 0 0 10px; opacity: 1; visibility: visible; transform: none; display: none; }
+    .menu > li.expanded > .dd { display: block; }
+    .menu > li:hover > .dd { display: none; }
+    .menu > li.expanded:hover > .dd { display: block; }
+    .menu > li.cta-li { border: 0; padding-top: 16px; }
+    .nav .btn--nav { width: 100%; margin: 0; min-height: 52px; }
+    .scrim { position: fixed; inset: 0; background: rgba(10,44,77,.42); opacity: 0; visibility: hidden; transition: opacity .2s; z-index: 40; }
+    .nav.open + .scrim { opacity: 1; visibility: visible; }
+  }
   @media (max-width: 960px) {
     .hero-grid, .steps-grid, .ex-head { grid-template-columns: 1fr; gap: 40px; }
     .steps-intro { position: static; }
@@ -174,10 +235,14 @@
     .branches { grid-template-columns: 1fr; }
   }
   @media (max-width: 600px) {
-    .topbar .wrap { height: 72px; }
-    .topbar img { height: 30px; }
-    .topbar a.tel span { display: none; }
-    .hero { padding: 120px 0 64px; }
+    .util .req, .util .sep { display: none; }
+    .nav .wrap { height: 68px; }
+    .nav .logo img { height: 32px; }
+    .f-grid { grid-template-columns: 1fr 1fr; }
+    .f-brand, .f-contact { grid-column: span 2; }
+    .f-contact { grid-template-columns: 1fr; }
+    .f-bottom { flex-direction: column; }
+    .hero { padding: 56px 0 64px; }
     .hero h1 { letter-spacing: -1.2px; }
     .hero-ctas .btn { width: 100%; }
     .stats { margin-top: 48px; }
@@ -201,12 +266,64 @@
 </head>
 <body>
 
-<header class="topbar">
+<div class="util">
   <div class="wrap">
-    <a href="https://www.imageworkscreative.com/" aria-label="ImageWorks Creative home"><img src="assets/logo-white.webp" alt="ImageWorks Creative" width="226" height="59"></a>
-    <a class="tel" href="tel:+17039287309"><span>Call or text </span><b>(703) 928-7309</b></a>
+    <a class="req" href="https://www.imageworkscreative.com/support-request">Service Request</a>
+    <span class="sep" aria-hidden="true">|</span>
+    <a href="tel:+17039287309">Call or text! <b>(703) 928-7309</b></a>
+  </div>
+</div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="logo" href="https://www.imageworkscreative.com/" aria-label="ImageWorks Creative home"><img src="assets/ImageWorks_logo-graycopy.webp" alt="ImageWorks Creative" width="317" height="80"></a>
+    <nav aria-label="Main">
+      <ul class="menu" id="menu">
+        <li>
+          <button type="button" aria-expanded="false">Web</button>
+          <ul class="dd">
+            <li class="grp">Website Design</li>
+            <li><a href="https://www.imageworkscreative.com/custom-web-design">Custom Website Design<small>Drupal / WordPress</small></a></li>
+            <li><a href="https://www.imageworkscreative.com/web-design-services/ai-intelligence-human-expertise">AI Website Design<small>Fast &amp; affordable</small></a></li>
+            <li><a href="https://www.imageworkscreative.com/fix-my-homepage">Homepage Facelift<small>Low cost · major impact</small></a></li>
+            <li class="grp">Website Services</li>
+            <li><a href="https://www.imageworkscreative.com/web-design-services/ai-intelligence-human-expertise">Website Content<small>AI &amp; SEO ready</small></a></li>
+            <li><a href="https://www.imageworkscreative.com/web-design-services/website-evolution-plan">Website Support &amp; Evolution<small>Essential</small></a></li>
+            <li><a href="https://www.imageworkscreative.com/web-design-services/website-maintenance-plans">Website Maintenance<small>Drupal &amp; WordPress</small></a></li>
+          </ul>
+        </li>
+        <li>
+          <button type="button" aria-expanded="false">Marketing</button>
+          <ul class="dd">
+            <li class="grp">AI, SEO &amp; Maps</li>
+            <li><a href="https://www.imageworkscreative.com/digital-marketing-services/seo-setup">SEO &amp; AI Search Setup</a></li>
+            <li><a href="#" aria-current="page">Search Funnels<small>Google + AI</small></a></li>
+            <li><a href="https://www.imageworkscreative.com/seo-aio-blog-writing">SEO/AIO Blogging<small>Traffic + links</small></a></li>
+            <li><a href="https://www.imageworkscreative.com/digital-marketing-services/gbp-maps-optimization">Google Maps Optimization<small>Rank locally</small></a></li>
+            <li class="grp">PPC &amp; Social</li>
+            <li><a href="https://www.imageworkscreative.com/digital-marketing/google-ads-ppc-management-plans">Google &amp; Meta Ads</a></li>
+            <li><a href="https://www.imageworkscreative.com/digital-marketing-services/social-media-plan">Social Media Reels &amp; Ads</a></li>
+          </ul>
+        </li>
+        <li><a href="https://www.imageworkscreative.com/design-branding/branding-services">Branding</a></li>
+        <li><a href="https://www.imageworkscreative.com/marketing-plans">Plans</a></li>
+        <li><a href="https://www.imageworkscreative.com/portfolio">Portfolio</a></li>
+        <li>
+          <button type="button" aria-expanded="false">About</button>
+          <ul class="dd">
+            <li><a href="https://www.imageworkscreative.com/about-us">About Us</a></li>
+            <li><a href="https://www.imageworkscreative.com/resource-lounge">Customer's Lounge</a></li>
+            <li><a href="https://www.imageworkscreative.com/blog">Blog</a></li>
+            <li><a href="https://www.imageworkscreative.com/start-a-project">Contact</a></li>
+          </ul>
+        </li>
+        <li class="cta-li"><a class="btn btn--green btn--nav" href="https://www.imageworkscreative.com/start-a-project">Let’s get started</a></li>
+      </ul>
+    </nav>
+    <button class="burger" type="button" aria-label="Open menu" aria-controls="menu" aria-expanded="false"><span></span></button>
   </div>
 </header>
+<div class="scrim" aria-hidden="true"></div>
 
 <main>
   <!-- Hero -->
@@ -214,7 +331,6 @@
     <div class="wrap">
       <div class="hero-grid">
         <div>
-          <p class="eyebrow">AI, SEO &amp; Modern Search</p>
           <h1>Search Funnels <span class="sub">(Google + AI)</span></h1>
           <p class="def">Build authority around the service or product you most want to be found for.</p>
           <p class="lead">We research the searches, questions, comparisons, and AI prompts around that subject, then build a connected group of pages that support one main Pillar Page. Those supporting pages help people find you in more ways while strengthening the depth, relevance, and credibility of the page you most want Google and AI to rank and recommend.</p>
@@ -273,7 +389,6 @@
     <div class="wrap">
       <div class="steps-grid">
         <div class="steps-intro reveal">
-          <p class="eyebrow">The process</p>
           <h2 class="sec">Here’s how we do it</h2>
           <p class="lead">Five steps, from research to a full year of growth, all built around the one page you most want Google and AI to recommend.</p>
         </div>
@@ -337,7 +452,6 @@
     <div class="wrap">
       <div class="ex-head reveal">
         <div>
-          <p class="eyebrow">Simple example</p>
           <h2 class="sec">“Lightweight Running Shoes”</h2>
         </div>
         <div>
@@ -403,19 +517,71 @@
   <!-- CTA -->
   <section class="band cta on-dark" id="start">
     <div class="wrap reveal">
-      <p class="eyebrow">Let’s talk</p>
       <h2 class="sec">Start with the service you most want to be found for</h2>
-      <p class="lead">In a short call, we’ll look at how people search for it today, what they’re asking AI, who Google and AI are recommending instead, and whether a Search Funnel makes sense for your business.</p>
+      <p class="lead">In a short call, we’ll look at how people search for it today, what they’re asking AI,<br> who Google and AI are recommending instead, and whether a Search Funnel makes sense for your business.</p>
       <p class="lead em">No pitch deck. Just a conversation about where you stand and what it would take to change it.</p>
       <a class="btn btn--green" href="https://www.imageworkscreative.com/start-a-project">Book a Call <span class="arr" aria-hidden="true">→</span></a>
     </div>
   </section>
 </main>
 
-<footer>
+<footer class="footer">
   <div class="wrap">
-    <img src="assets/logo-white.webp" alt="ImageWorks Creative" width="226" height="59">
-    <span>Northern Virginia · St. Petersburg, FL · <a href="https://www.imageworkscreative.com/">imageworkscreative.com</a></span>
+    <div class="f-grid">
+      <div class="f-brand">
+        <a href="https://www.imageworkscreative.com/" aria-label="ImageWorks Creative home"><img src="assets/logo-white.webp" alt="ImageWorks Creative" width="226" height="59"></a>
+        <p>Website &amp; marketing, built to work together. Serving businesses nationwide since 1997.</p>
+        <div class="social">
+          <a href="https://www.facebook.com/ImageWorksCreative" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8V6.2c0-.8.2-1.2 1.4-1.2H17V2h-2.6C11.3 2 10.5 3.6 10.5 6v2H8v3h2.5v11H14V11h2.6l.4-3z"/></svg></a>
+          <a href="https://x.com/imageworks" aria-label="X"><svg viewBox="0 0 24 24"><path d="M17.8 3h3.1l-6.8 7.7 8 10.3h-6.3l-4.9-6.4L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.4 5.8L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z"/></svg></a>
+          <a href="https://www.linkedin.com/company/imageworks-creative" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3V9.5zm6.5 0h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.2c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V21h-4V9.5z"/></svg></a>
+          <a href="https://www.instagram.com/imageworks_creative/" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 3.9 3.9 2.4 7.2 2.3c1.2-.1 1.6-.1 4.8-.1zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zm5.2-9.6a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4z"/></svg></a>
+        </div>
+      </div>
+      <div class="f-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="https://www.imageworkscreative.com/custom-web-design">Web Design</a></li>
+          <li><a href="https://www.imageworkscreative.com/web-design-services/ai-intelligence-human-expertise">AI Website Design</a></li>
+          <li><a href="https://www.imageworkscreative.com/digital-marketing-services">Digital Marketing</a></li>
+          <li><a href="https://www.imageworkscreative.com/design-branding/branding-services">Branding</a></li>
+          <li><a href="https://www.imageworkscreative.com/marketing-plans">Website &amp; Marketing Plans</a></li>
+          <li><a href="https://www.imageworkscreative.com/web-design-services/website-maintenance-plans">Website Maintenance</a></li>
+          <li><a href="https://www.imageworkscreative.com/seo-aio-blog-writing">Content Writing</a></li>
+          <li><a href="https://www.imageworkscreative.com/digital-marketing-services/gbp-maps-optimization">Google Maps Optimization</a></li>
+          <li><a href="https://www.imageworkscreative.com/digital-marketing-services/seo-setup">SEO + AIO Optimization</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="https://www.imageworkscreative.com/portfolio">Our Work</a></li>
+          <li><a href="https://www.imageworkscreative.com/about-us">About</a></li>
+          <li><a href="https://www.imageworkscreative.com/start-a-project">Contact</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Platform Expertise</h4>
+        <ul>
+          <li><a href="https://www.imageworkscreative.com/blog/essential-tips-effective-drupal-website-maintenance">Drupal</a></li>
+          <li><a href="https://www.imageworkscreative.com/custom-web-design">WordPress</a></li>
+        </ul>
+        <h4 class="mt">AI Stack</h4>
+        <ul>
+          <li><a href="https://www.imageworkscreative.com/web-design-services/ai-intelligence-human-expertise">ImageWorks Intelligence</a></li>
+        </ul>
+      </div>
+      <div class="f-col f-contact">
+        <h4>Questions? Quote?</h4>
+        <div>Call or text us:<a class="tel" href="tel:+17039287309">(703) 928-7309</a></div>
+        <address><a href="https://maps.app.goo.gl/CqkrHLJthYh79TX76">Ashburn, VA Location</a><br>44679 Endicott Dr Suite 300<br>Unit 580 | Ashburn, VA 20147</address>
+        <address><a href="https://maps.app.goo.gl/9npaJGDKpJFP1L838">St. Petersburg, FL Location</a><br>433 Central Ave<br>4th floor | St. Petersburg, FL 33701</address>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <p>© 2026 ImageWorks Creative, a full-service marketing company, branding firm, and web design agency since 1997. All rights reserved.</p>
+      <nav aria-label="Legal"><a href="https://www.imageworkscreative.com/sitemap.xml">Sitemap</a><span>|</span><a href="https://www.imageworkscreative.com/content/privacy-policy">Privacy Policy</a></nav>
+    </div>
   </div>
 </footer>
 
@@ -427,6 +593,21 @@
       entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
     }, { threshold: 0.12 });
     els.forEach(function (e) { io.observe(e); });
+  })();
+
+  (function () {
+    var nav = document.getElementById('nav'), burger = nav.querySelector('.burger'), scrim = document.querySelector('.scrim');
+    function setOpen(o) { nav.classList.toggle('open', o); burger.setAttribute('aria-expanded', o); burger.setAttribute('aria-label', o ? 'Close menu' : 'Open menu'); document.body.style.overflow = o ? 'hidden' : ''; }
+    burger.addEventListener('click', function () { setOpen(!nav.classList.contains('open')); });
+    scrim.addEventListener('click', function () { setOpen(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+    nav.querySelectorAll('.menu > li > button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var li = b.parentNode, on = !li.classList.contains('expanded');
+        li.classList.toggle('expanded', on); b.setAttribute('aria-expanded', on);
+      });
+    });
+    window.addEventListener('scroll', function () { nav.classList.toggle('stuck', window.scrollY > 40); }, { passive: true });
   })();
 </script>
 </body>
