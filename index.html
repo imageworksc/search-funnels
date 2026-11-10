@@ -115,54 +115,28 @@
   @keyframes hero-in { from { opacity: 0; transform: translateY(14px); } }
 
   /* The kit: what a Search Funnel is made of, as tiles */
-  .kit { display: grid; grid-template-columns: minmax(0, 1.32fr) minmax(0, 1fr); gap: 12px; width: 100%; max-width: 460px; margin-inline: auto; }
-  .kit-t { position: relative; overflow: hidden; padding: 14px 16px; border-radius: var(--r); background: linear-gradient(180deg, #fff, #fcfdff); box-shadow: 0 1px 3px rgba(20,40,80,.07), 0 12px 28px rgba(20,40,80,.10); transition: transform .4s var(--ease), box-shadow .4s var(--ease); }
-  .kit-t::before { content: ""; position: absolute; top: 0; inset-inline: 0; z-index: 3; block-size: 3px; background: var(--green); transform: scaleX(0); transform-origin: left; transition: transform .45s var(--ease); }
-  .kit-t:hover { transform: translateY(-4px); box-shadow: 0 1px 3px rgba(20,40,80,.08), 0 20px 40px rgba(20,40,80,.16); }
+  .kit { width: 100%; max-width: 400px; margin-inline: auto; }
+  .kit-t { position: relative; overflow: hidden; padding: 18px 20px 16px; border-radius: var(--r); border: 1px solid var(--border); background: rgba(255,255,255,.72); transition: border-color .3s var(--ease), background .3s var(--ease); }
+  .kit-t::before { content: ""; position: absolute; top: 0; inset-inline: 0; height: 3px; background: var(--green); transform: scaleX(0); transform-origin: left; transition: transform .45s var(--ease); }
+  .kit-t:hover { border-color: var(--border-hover); background: #fff; }
   .kit-t:hover::before { transform: scaleX(1); }
-  .kit-label { font-size: 8.5px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--faint); transition: color .35s var(--ease); }
-  .kit-t:hover .kit-label { color: var(--navy); }
-  .kit-note { font-size: 9px; font-weight: 700; color: var(--faint); }
-
-  .kit-pillar { grid-column: 1; grid-row: 1 / span 2; display: flex; flex-direction: column; min-block-size: 220px; background-image: linear-gradient(to right, rgba(20,60,102,.055) 1px, transparent 1px), linear-gradient(to bottom, rgba(20,60,102,.055) 1px, transparent 1px), linear-gradient(180deg, #fff, #fcfdff); background-size: 20px 20px, 20px 20px, 100% 100%; }
-  .kit-tree { flex: 1; display: flex; flex-direction: column; justify-content: center; margin: 12px 0 10px; }
-  .kit-tree .p { align-self: flex-start; background: var(--navy); color: #fff; font-size: 10.5px; font-weight: 800; padding: 7px 10px; border-radius: 1px; }
-  .kit-tree ul { list-style: none; margin-left: 12px; padding: 4px 0 0 12px; border-left: 2px solid var(--green); display: grid; gap: 5px; }
-  .kit-tree li { position: relative; block-size: 12px; border-radius: 1px; background: var(--chip-green); box-shadow: inset 0 0 0 1px #cfe7b6; animation: kitDraw 14s var(--ease) infinite; }
-  .kit-tree li::before { content: ""; position: absolute; left: -12px; top: 5px; width: 9px; height: 2px; background: var(--green); }
-  .kit-tree li:nth-child(1) { inline-size: 88%; } .kit-tree li:nth-child(2) { inline-size: 72%; animation-delay: -13.4s; }
-  .kit-tree li:nth-child(3) { inline-size: 80%; animation-delay: -13s; } .kit-tree li:nth-child(4) { inline-size: 64%; animation-delay: -12.6s; }
-  .kit-tree li:nth-child(5) { inline-size: 76%; animation-delay: -12.2s; }
-  .kit-pillar:hover .kit-note { color: var(--green-ink); }
-
-  .kit-fact { grid-column: 2; grid-row: 1; }
-  .kit-fact ul { list-style: none; margin-top: 10px; display: grid; gap: 6px; }
-  .kit-fact li { display: flex; align-items: center; gap: 6px; }
-  .kit-fact li::before { content: ""; flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--green); box-shadow: inset 0 0 0 2px #fff, 0 0 0 1px var(--green); }
-  .kit-fact li i { display: block; block-size: 5px; border-radius: 1px; background: var(--tint-blue); }
-
-  .kit-support { grid-column: 2; grid-row: 2; }
-  .kit-num { display: block; margin-top: 4px; font-size: 34px; font-weight: 800; line-height: 1.05; letter-spacing: -.04em; color: var(--navy); }
-  .kit-num em { font-style: normal; color: var(--green-ink); }
-  .kit-dots { display: flex; gap: 5px; margin-top: 8px; }
-  .kit-dots i { width: 12px; height: 12px; border-radius: 50%; background: var(--green); animation: kitChip 10s ease-in-out infinite; }
-  .kit-dots i:nth-child(2) { animation-delay: -8s; } .kit-dots i:nth-child(3) { animation-delay: -6s; } .kit-dots i:nth-child(4) { animation-delay: -4s; } .kit-dots i:nth-child(5) { animation-delay: -2s; }
-
-  .kit-grow { grid-column: 1; grid-row: 3; }
-  .kit-bars { display: flex; align-items: flex-end; gap: 4px; block-size: 40px; margin-top: 8px; }
-  .kit-bars i { flex: 1; border-radius: 1px; background: var(--tint-blue); box-shadow: inset 0 0 0 1px #d3e0ef; transition: background .35s var(--ease); }
-  .kit-bars i:nth-child(1) { block-size: 20%; } .kit-bars i:nth-child(2) { block-size: 28%; } .kit-bars i:nth-child(3) { block-size: 34%; } .kit-bars i:nth-child(4) { block-size: 42%; } .kit-bars i:nth-child(5) { block-size: 50%; }
-  .kit-bars i:nth-child(6) { block-size: 58%; } .kit-bars i:nth-child(7) { block-size: 66%; } .kit-bars i:nth-child(8) { block-size: 76%; } .kit-bars i:nth-child(9) { block-size: 86%; } .kit-bars i:nth-child(10) { block-size: 100%; background: var(--blue); box-shadow: none; }
-  .kit-grow:hover .kit-bars i { background: var(--chip-green); box-shadow: inset 0 0 0 1px #cfe7b6; }
-  .kit-grow:hover .kit-bars i:nth-child(10) { background: var(--green); }
-
-  .kit-total { grid-column: 2; grid-row: 3; display: flex; flex-direction: column; }
-  .kit-total__edge { position: absolute; top: 0; bottom: 0; left: 0; inline-size: 4px; background: var(--green); }
-  .kit-total .kit-num { font-size: 26px; margin-top: 6px; }
-  .kit-total small { font-size: 7.5px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--green-ink); }
-  .kit-total__bar { display: block; block-size: 5px; inline-size: 62%; margin-top: 10px; border-radius: 3px; overflow: hidden; background: var(--navy); transition: inline-size .45s var(--ease); }
-  .kit-total__bar i { display: block; margin-left: auto; inline-size: 32%; block-size: 100%; background: var(--green); }
-  .kit-total:hover .kit-total__bar { inline-size: 100%; }
+  .kit-label { font-size: 9px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--faint); }
+  .kit-tree { display: flex; flex-direction: column; margin: 14px 0 16px; }
+  .kit-tree .p { align-self: flex-start; background: var(--navy); color: #fff; font-size: 11px; font-weight: 800; padding: 7px 11px; border-radius: 1px; }
+  .kit-tree ul { list-style: none; margin-left: 14px; padding: 6px 0 0 14px; border-left: 2px solid var(--green); display: grid; gap: 6px; }
+  .kit-tree li { position: relative; block-size: 11px; border-radius: 1px; background: var(--chip-green); box-shadow: inset 0 0 0 1px #cfe7b6; animation: kitDraw 14s var(--ease) infinite; }
+  .kit-tree li::before { content: ""; position: absolute; left: -14px; top: 4px; width: 10px; height: 2px; background: var(--green); }
+  .kit-tree li.later { background: transparent; box-shadow: inset 0 0 0 1px #c2ccdb; }
+  .kit-tree li.later::before { background: #c2ccdb; }
+  .kit-tree li:nth-child(1) { inline-size: 86%; } .kit-tree li:nth-child(2) { inline-size: 70%; animation-delay: -13.4s; }
+  .kit-tree li:nth-child(3) { inline-size: 78%; animation-delay: -13s; } .kit-tree li:nth-child(4) { inline-size: 62%; animation-delay: -12.6s; }
+  .kit-tree li:nth-child(5) { inline-size: 74%; animation-delay: -12.2s; } .kit-tree li:nth-child(6) { inline-size: 54%; animation-delay: -11.8s; }
+  .kit-tree li:nth-child(7) { inline-size: 46%; animation-delay: -11.4s; }
+  .kit-stats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--border); padding-top: 12px; }
+  .kit-stats span { font-size: 10.5px; font-weight: 600; color: var(--muted); }
+  .kit-stats span + span { padding-left: 14px; border-left: 1px solid var(--border); }
+  .kit-stats b { display: block; font-size: 22px; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; color: var(--navy); }
+  .kit-stats em { font-style: normal; color: var(--green-ink); }
 
   @keyframes kitDraw { 0% { opacity: 0; transform: translateX(-4px); } 8%, 100% { opacity: 1; transform: none; } }
   @keyframes kitChip { 0%, 5% { filter: brightness(1.18); transform: scale(1.12); } 18%, 100% { filter: none; transform: none; } }
@@ -298,7 +272,7 @@
   @media (max-width: 960px) {
     .hero-grid, .steps-grid, .ex-head { grid-template-columns: 1fr; gap: 40px; }
     .steps-intro { position: static; }
-    .kit { max-width: 420px; margin-inline: 0; }
+    .kit { max-width: 400px; margin-inline: 0; }
     .branches { grid-template-columns: 1fr; }
   }
   @media (max-width: 600px) {
@@ -406,36 +380,16 @@
         <!-- What a Search Funnel is made of, laid out as tiles -->
         <div class="kit" aria-hidden="true">
           <div class="kit-t kit-pillar">
-            <p class="kit-label">Pillar Page</p>
+            <p class="kit-label">Your Search Funnel</p>
             <div class="kit-tree">
-              <span class="p">Your core service</span>
-              <ul><li></li><li></li><li></li><li></li><li></li></ul>
+              <span class="p">Pillar Page</span>
+              <ul><li></li><li></li><li></li><li></li><li></li><li class="later"></li><li class="later"></li></ul>
             </div>
-            <p class="kit-note">One page at the center of the funnel</p>
-          </div>
-          <div class="kit-t kit-fact">
-            <p class="kit-label">Business Facts</p>
-            <ul>
-              <li><i style="inline-size:80%"></i></li>
-              <li><i style="inline-size:62%"></i></li>
-              <li><i style="inline-size:72%"></i></li>
-            </ul>
-          </div>
-          <div class="kit-t kit-support">
-            <p class="kit-label">Supporting pages</p>
-            <span class="kit-num"><em>+</em>5</span>
-            <span class="kit-dots"><i></i><i></i><i></i><i></i><i></i></span>
-          </div>
-          <div class="kit-t kit-grow">
-            <p class="kit-label">Added over the year</p>
-            <span class="kit-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-          </div>
-          <div class="kit-t kit-total">
-            <span class="kit-total__edge"></span>
-            <p class="kit-label">Total</p>
-            <span class="kit-num">≈16</span>
-            <small>Connected pages</small>
-            <span class="kit-total__bar"><i></i></span>
+            <div class="kit-stats">
+              <span><b>1</b>Pillar</span>
+              <span><b><em>+</em>5</b>Supporting</span>
+              <span><b>≈16</b>Total pages</span>
+            </div>
           </div>
         </div>
       </div>
